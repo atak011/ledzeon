@@ -31,6 +31,7 @@ class DeviceController extends Controller
     {
         $device = Device::where('deviceId',$deviceId)->first();
         $device->value = $request->value;
+        $device->save();
         return $device;
     }
 
