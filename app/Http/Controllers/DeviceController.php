@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Device;
+use Carbon\Carbon;
 use Carbon\Traits\Date;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class DeviceController extends Controller
     public function getValue($deviceId)
     {
         $device = Device::where('deviceId',$deviceId)->first();
-        $device->last_connection = Date::now();
+        $device->last_connection = Carbon::now();
         $device->save();
         $response = Response::make($device->value, 200);
         $response->header('Content-Type', 'text/plain');
